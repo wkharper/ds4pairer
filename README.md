@@ -25,3 +25,7 @@ $ make
 $ ./bin/ds4pairer
 $ ./bin/ds4pairer xx:xx:xx:xx:xx:xx
 ```
+
+# Using with ESP-32 WROOM
+1. Obtain mac address of BT device
+1. Use obtained mac address in `./bin/ds4pairer obtained_mac_add` to update controller paired mac
