@@ -22,4 +22,4 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 endif ()
 
 add_executable (${PROJECT_NAME} ${SOURCES})
-target_link_libraries (${PROJECT_NAME} ${HIDAPI_LIBRARIES} ${PLATFORM_LIBS})
+target_link_libraries (${PROJECT_NAME} ${HIDAPI_LIBRARY} ${PLATFORM_LIBS})

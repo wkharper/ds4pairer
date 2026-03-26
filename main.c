@@ -29,8 +29,9 @@
 // #include </opt/homebrew/Cellar/hidapi/0.13.1/include/hidapi/hidapi.h>
 #include <hidapi/hidapi.h>
 
-#define VENDOR 0x054c
-#define PRODUCT 0x05C4
+#define VENDOR     0x054c
+#define PRODUCT_V1 0x05c4
+#define PRODUCT_V2 0x09cc
 /* 0xf5   == (0x03f5 & ~(3 << 8))
  * 0x03f5 == (0xf5 | (3 << 8))
  * HIDAPI will automatically add (3 << 8 to the report id.
@@ -143,10 +144,15 @@ int main(int argc, char **argv)
         return 0;
     }
 
-    dev = hid_open(VENDOR, PRODUCT, NULL);
+
+    dev = hid_open(VENDOR, PRODUCT_V1, NULL);
     if (dev == NULL) {
-        fprintf(stderr, "Could not find SixAxis controller\n");
-        return 0;
+        dev = hid_open(VENDOR, PRODUCT_V2, NULL);
+    }
+
+    if (dev == NULL) {
+        fprintf(stderr, "Could not find DualShock 4 controller\n");
+        return 1;
     }
 
     if (argc == 2) {
